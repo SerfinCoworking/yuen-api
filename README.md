@@ -50,6 +50,10 @@ echo "self-administer" > .ruby-gemset
 
 bundle install
 ```
+If you get an error related with pg_gem, try run: 
+```
+sudo apt-get install libpq-dev
+```
 
 #### 5. Create DB User
 
