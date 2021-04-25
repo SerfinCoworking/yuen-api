@@ -33,7 +33,7 @@ rvm gemset create self-administer
 
 rvm ruby-3.0.0@self-administer
 ```
-#### 3. Install PostgreSQL from [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04)
+#### 3. Install PostgreSQL from [here](https://geeksencuarentena.com/linux/como-instalar-postgresql-y-pgadmin4-en-ubuntu-20-04/)
 
 #### 4. Clone the repo and install dependencies 
 
