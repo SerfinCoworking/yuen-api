@@ -73,6 +73,8 @@ ALTER USER self_administer_api CREATEDB;
 bin/rake db:create 
 
 bin/rake db:migrate
+
+bin/rake db:seed (opcional)
 ```
 
 #### 7. Run API and enjoy!
