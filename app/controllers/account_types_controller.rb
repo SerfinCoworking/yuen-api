@@ -27,12 +27,13 @@ class AccountTypesController < ApplicationController
   def update
     @account_type.update!(account_type_params)
 
-    json_response(@account_type, :updated)
+    json_response(@account_type, :ok)
   end
 
   # DELETE /account_types/1
   def destroy
     @account_type.destroy
+    head :no_content
   end
 
   private

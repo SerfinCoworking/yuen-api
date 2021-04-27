@@ -74,7 +74,7 @@ RSpec.describe "/account_types", type: :request do
         patch account_type_url(account_type),
               params: { account_type: new_attributes }, headers: valid_headers, as: :json
         account_type.reload
-        skip("Add assertions for updated state")
+        expect(response).to have_http_status(:ok)
       end
 
       it "renders a JSON response with the account_type" do
