@@ -26,13 +26,13 @@ class AccountsController < ApplicationController
   # PATCH/PUT /accounts/1
   def update
     @account.update!(account_params)
-
-    json_response(@account, :updated)
+    json_response(@account, :ok)
   end
 
   # DELETE /accounts/1
   def destroy
     @account.destroy
+    head :no_content
   end
 
   private
