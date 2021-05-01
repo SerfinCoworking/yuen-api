@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_002106) do
+ActiveRecord::Schema.define(version: 2021_05_01_180135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,4 +35,38 @@ ActiveRecord::Schema.define(version: 2021_04_20_002106) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "company_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_company_users_on_company_id"
+    t.index ["user_id"], name: "index_company_users_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "barcode"
+    t.string "name"
+    t.text "description"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_products_on_company_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "company_users", "companies"
+  add_foreign_key "company_users", "users"
+  add_foreign_key "products", "companies"
 end

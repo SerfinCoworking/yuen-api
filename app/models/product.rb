@@ -1,9 +1,8 @@
-class CompanyUser < ApplicationRecord
+class Product < ApplicationRecord
   # Relations
-  belongs_to :user
   belongs_to :company
 
   # Validations
-  validates :user, presence: true
+  validates :name, presence: true
   validates :company, presence: true
 end
