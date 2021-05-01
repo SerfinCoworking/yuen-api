@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :company_users
+  resources :companies
   resources :account_types
   resources :accounts
 end
