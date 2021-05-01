@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :product do
-    barcode { "MyString" }
-    name { "MyString" }
-    description { "MyText" }
-    company { nil }
+    barcode { Faker::Barcode.ean(13) }
+    name { Faker::Vehicle.manufacture }
+    description { Faker::Vehicle.standard_specs }
+    company factory: :company
   end
 end

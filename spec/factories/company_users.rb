@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :company_user do
-    user { nil }
-    company { nil }
+    user factory: :user
+    company factory: :company
   end
 end
