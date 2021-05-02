@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe "/products", type: :request do
+RSpec.describe "/products", type: :request, swagger_doc: 'v2/swagger.json' do
 
   let!(:company) { create(:company) }
   let!(:category) { create(:product_category) }

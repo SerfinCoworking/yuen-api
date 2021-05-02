@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe "/company_users", type: :request do
   let!(:company) { create(:company) }

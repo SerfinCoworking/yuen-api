@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+# Swagger to document the api
+gem 'rswag-api'
+gem 'rswag-ui'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Use postgresql as the database for Active Record
@@ -28,6 +31,8 @@ gem 'rack-cors'
 # gem 'rack-cors'
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'rswag-specs'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'

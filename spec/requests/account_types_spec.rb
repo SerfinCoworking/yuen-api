@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe "/account_types", type: :request do
   let(:valid_attributes) { 
