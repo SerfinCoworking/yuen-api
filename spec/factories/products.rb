@@ -4,5 +4,6 @@ FactoryBot.define do
     name { Faker::Vehicle.manufacture }
     description { Faker::Vehicle.standard_specs }
     company factory: :company
+    category factory: :product_category
   end
 end

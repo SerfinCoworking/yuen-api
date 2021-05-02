@@ -3,13 +3,15 @@ require 'rails_helper'
 RSpec.describe "/products", type: :request do
 
   let!(:company) { create(:company) }
+  let!(:category) { create(:product_category) }
 
   let(:valid_attributes) {
     {
       barcode: Faker::Barcode.ean(13),
       name: Faker::Vehicle.manufacture,
       description: Faker::Vehicle.standard_specs,
-      company_id: company.id
+      company_id: company.id,
+      category_id: category.id
     }
   }
 
@@ -18,7 +20,8 @@ RSpec.describe "/products", type: :request do
       barcode: nil,
       name: nil,
       description: nil,
-      company: nil
+      company: nil,
+      category: nil
     }
   }
 

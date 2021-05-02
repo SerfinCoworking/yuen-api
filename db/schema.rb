@@ -53,13 +53,23 @@ ActiveRecord::Schema.define(version: 2021_05_01_180135) do
     t.index ["user_id"], name: "index_company_users_on_user_id"
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.bigint "parent_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_id"], name: "index_product_categories_on_parent_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "barcode"
     t.string "name"
     t.text "description"
     t.bigint "company_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["company_id"], name: "index_products_on_company_id"
   end
 
