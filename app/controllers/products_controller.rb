@@ -1,41 +1,39 @@
 class ProductsController < ApplicationController
+  include Response
+  include ExceptionHandler
+
   before_action :set_product, only: [:show, :update, :destroy]
 
   # GET /products
   def index
     @products = Product.all
 
-    render json: @products
+    json_response(@products)
   end
 
   # GET /products/1
   def show
-    render json: @product
+    json_response(@product)
   end
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+    @product = Product.create!(product_params)
 
-    if @product.save
-      render json: @product, status: :created, location: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
+    json_response(@product, :created)
   end
 
   # PATCH/PUT /products/1
   def update
-    if @product.update(product_params)
-      render json: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
+    @product.update!(product_params)
+    
+    json_response(@product, :ok)
   end
 
   # DELETE /products/1
   def destroy
     @product.destroy
+    head :no_content
   end
 
   private
