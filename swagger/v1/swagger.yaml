@@ -4,45 +4,14 @@ info:
   title: API V1
   version: v1
 paths:
-  "/blogs":
-    post:
-      summary: Creates a blog
-      tags:
-      - Blogs
-      parameters: []
-      responses:
-        '201':
-          description: blog created
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                content:
-                  type: string
-              required:
-              - title
-              - content
-  "/blogs/{id}":
+  "/accounts":
     get:
-      summary: Retrieves a blog
+      summary: Retrieves all accounts
       tags:
-      - Blogs
-      - Another Tag
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      - Accounts
       responses:
         '200':
-          description: blog found
+          description: account found
           content:
             application/json:
               schema:
@@ -73,7 +42,181 @@ paths:
                 - title
                 - content
         '404':
-          description: blog not found
+          description: account not found
+        '406':
+          description: unsupported accept header
+    post:
+      summary: Creates an account
+      tags:
+      - Accounts
+      parameters: []
+      responses:
+        '201':
+          description: account created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                account_type_id:
+                  type: integer
+                name:
+                  type: string
+                account_alias:
+                  type: string
+                cbu:
+                  type: string
+                description:
+                  type: text
+                balance:
+                  type: decimal
+              required:
+              - user_id
+              - account_type_id
+              - name
+              - balance
+  "/accounts/id":
+    get:
+      summary: Retrieves a account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: account not found
+        '406':
+          description: unsupported accept header
+    patch:
+      summary: Updates an account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: account not found
+        '406':
+          description: unsupported accept header
+    delete:
+      summary: Delete an account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: account not found
         '406':
           description: unsupported accept header
 servers:
