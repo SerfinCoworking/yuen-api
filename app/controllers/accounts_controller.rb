@@ -1,6 +1,4 @@
 class AccountsController < ApplicationController
-  include Response
-  include ExceptionHandler
 
   before_action :set_account, only: [:show, :update, :destroy]
 

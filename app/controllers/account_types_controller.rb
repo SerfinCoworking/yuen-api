@@ -1,6 +1,4 @@
 class AccountTypesController < ApplicationController
-  include Response
-  include ExceptionHandler
 
   before_action :set_account_type, only: [:show, :update, :destroy]
 

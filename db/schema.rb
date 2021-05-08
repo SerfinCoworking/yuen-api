@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_033009) do
     t.string "family_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
   end
 
 end

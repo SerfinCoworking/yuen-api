@@ -1,6 +1,4 @@
-class UsersController < SecuredController
-  include Response
-  include ExceptionHandler
+class UsersController < ApplicationController
   
   before_action :set_user, only: [:show, :update, :destroy]
 
@@ -8,7 +6,6 @@ class UsersController < SecuredController
   # GET /users
   def index
     @users = User.all
-    puts "from users controller=================="
     json_response(@users)
   end
 
