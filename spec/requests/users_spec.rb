@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'swagger_helper'
 
 RSpec.describe "/users", type: :request do
 
