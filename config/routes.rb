@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :product_locations
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   resources :product_categories
