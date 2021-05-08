@@ -11,12 +11,18 @@ RSpec.describe 'api/accounts', type: :request do
         schema type: :object,
           properties: {
             id: { type: :integer },
-            title: { type: :string },
-            content: { type: :string }
+            user_id: { type: :integer },
+            account_type_id: { type: :integer },
+            name: { type: :string },
+            cbu: { type: :string },
+            description: { type: :string },
+            balance: { type: :integer },
+            created_at: { type: :string },
+            updated_at: { type: :string }
           },
-          required: [ 'id', 'title', 'content' ]
+          required: [ 'name', 'account_type' ]
 
-        let(:id) { Blog.create(title: 'foo', content: 'bar').id }
+        let(:id) { Account.create(name: 'foo', account_type: AccountType.create(name: 'Efectivo' )).id }
         run_test!
       end
 
@@ -42,14 +48,14 @@ RSpec.describe 'api/accounts', type: :request do
           name: { type: :string },
           account_alias: { type: :string },
           cbu: { type: :string },
-          description: { type: :text },
-          balance: { type: :decimal }
+          description: { type: :string },
+          balance: { type: :integer }
         },
-        required: [ 'user_id', 'account_type_id', 'name', 'balance' ]
+        required: [ 'account_type_id', 'name' ]
       }
 
       response '201', 'account created' do
-        let(:account) { { user_id: 1, account_type_id: 1, name: 'Cuenta chica', balance: 0 } }
+        let(:account) { { user_id: 1, account_type_id: AccountType.first, name: 'Cuenta chica', balance: 0 } }
         run_test!
       end
 
@@ -60,7 +66,7 @@ RSpec.describe 'api/accounts', type: :request do
     end
   end
 
-  path '/accounts/id' do
+  path '/accounts/{id}' do
     get 'Retrieves a account' do
       tags 'Accounts'
       produces 'application/json', 'application/xml'
@@ -69,11 +75,15 @@ RSpec.describe 'api/accounts', type: :request do
       response '200', 'account found' do
         schema type: :object,
           properties: {
-            id: { type: :integer },
-            title: { type: :string },
-            content: { type: :string }
+            user_id: { type: :integer },
+            account_type_id: { type: :integer },
+            name: { type: :string },
+            account_alias: { type: :string },
+            cbu: { type: :string },
+            description: { type: :string },
+            balance: { type: :integer }
           },
-          required: [ 'id', 'title', 'content' ]
+          required: [ 'account_type_id', 'name' ]
 
         let(:id) { Blog.create(title: 'foo', content: 'bar').id }
         run_test!
@@ -94,6 +104,19 @@ RSpec.describe 'api/accounts', type: :request do
       tags 'Accounts'
       produces 'application/json', 'application/xml'
       parameter name: :id, in: :path, type: :string
+      parameter name: :account, in: :body, schema: {
+        type: :object,
+        properties: {
+          user_id: { type: :integer },
+          account_type_id: { type: :integer },
+          name: { type: :string },
+          account_alias: { type: :string },
+          cbu: { type: :string },
+          description: { type: :string },
+          balance: { type: :integer }
+        },
+        required: [ 'account_type_id', 'name' ]
+      }
 
       response '200', 'account found' do
         schema type: :object,

@@ -19,28 +19,25 @@ paths:
                 properties:
                   id:
                     type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
-                required:
-                - id
-                - title
-                - content
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
+                  user_id:
                     type: integer
-                  title:
+                  account_type_id:
+                    type: integer
+                  name:
                     type: string
-                  content:
+                  cbu:
+                    type: string
+                  description:
+                    type: string
+                  balance:
+                    type: integer
+                  created_at:
+                    type: string
+                  updated_at:
                     type: string
                 required:
-                - id
-                - title
-                - content
+                - name
+                - account_type
         '404':
           description: account not found
         '406':
@@ -72,15 +69,13 @@ paths:
                 cbu:
                   type: string
                 description:
-                  type: text
+                  type: string
                 balance:
-                  type: decimal
+                  type: integer
               required:
-              - user_id
               - account_type_id
               - name
-              - balance
-  "/accounts/id":
+  "/accounts/{id}":
     get:
       summary: Retrieves a account
       tags:
@@ -99,30 +94,44 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
+                  user_id:
                     type: integer
-                  title:
+                  account_type_id:
+                    type: integer
+                  name:
                     type: string
-                  content:
+                  account_alias:
                     type: string
+                  cbu:
+                    type: string
+                  description:
+                    type: string
+                  balance:
+                    type: integer
                 required:
-                - id
-                - title
-                - content
+                - account_type_id
+                - name
             application/xml:
               schema:
                 type: object
                 properties:
-                  id:
+                  user_id:
                     type: integer
-                  title:
+                  account_type_id:
+                    type: integer
+                  name:
                     type: string
-                  content:
+                  account_alias:
                     type: string
+                  cbu:
+                    type: string
+                  description:
+                    type: string
+                  balance:
+                    type: integer
                 required:
-                - id
-                - title
-                - content
+                - account_type_id
+                - name
         '404':
           description: account not found
         '406':
@@ -131,12 +140,7 @@ paths:
       summary: Updates an account
       tags:
       - Accounts
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: account found
@@ -217,6 +221,205 @@ paths:
                 - content
         '404':
           description: account not found
+        '406':
+          description: unsupported accept header
+  "/companies":
+    get:
+      summary: Retrieves all companies
+      tags:
+      - Companies
+      responses:
+        '200':
+          description: company found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: company not found
+        '406':
+          description: unsupported accept header
+    post:
+      summary: Creates an company
+      tags:
+      - Companies
+      parameters: []
+      responses:
+        '201':
+          description: company created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                company:
+                  type: string
+                name:
+                  type: string
+                cbu:
+                  type: string
+                description:
+                  type: text
+                balance:
+                  type: decimal
+              required:
+              - user_id
+              - company
+              - name
+              - balance
+  "/company/id":
+    get:
+      summary: Retrieves a company
+      tags:
+      - Companies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: company found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: company not found
+        '406':
+          description: unsupported accept header
+    patch:
+      summary: Updates an company
+      tags:
+      - Companies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: company found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: company not found
+        '406':
+          description: unsupported accept header
+    delete:
+      summary: Delete an company
+      tags:
+      - Companies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: company found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - title
+                - content
+        '404':
+          description: company not found
         '406':
           description: unsupported accept header
 servers:
