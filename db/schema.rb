@@ -35,24 +35,6 @@ ActiveRecord::Schema.define(version: 2021_05_08_135659) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.boolean "email_verified"
-    t.string "email"
-    t.string "auth0_id"
-    t.string "username"
-    t.string "phone_number"
-    t.boolean "phone_verified"
-    t.string "picture"
-    t.string "name"
-    t.string "nickname"
-    t.boolean "blocked"
-    t.string "given_name"
-    t.string "family_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -97,6 +79,24 @@ ActiveRecord::Schema.define(version: 2021_05_08_135659) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_stock_locations_on_company_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.boolean "email_verified"
+    t.string "email"
+    t.string "auth0_id"
+    t.string "username"
+    t.string "phone_number"
+    t.boolean "phone_verified"
+    t.string "picture"
+    t.string "name"
+    t.string "nickname"
+    t.boolean "blocked"
+    t.string "given_name"
+    t.string "family_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
   end
 
   add_foreign_key "company_users", "companies"
