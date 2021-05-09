@@ -5,7 +5,7 @@ FactoryBot.define do
     cbu { Faker::Bank.account_number(digits: 22) }
     description { Faker::Lorem.paragraph(2) }
     balance { Faker::Number.number(digits: 5) }
-    user_id { 1 }
+    user factory: :user
     account_type factory: :account_type
   end
 end

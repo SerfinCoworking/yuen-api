@@ -66,7 +66,7 @@ RSpec.describe "/account_types", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'Cheques' }
       }
 
       it "updates the requested account_type" do
@@ -75,6 +75,7 @@ RSpec.describe "/account_types", type: :request do
               params: { account_type: new_attributes }, headers: valid_headers, as: :json
         account_type.reload
         expect(response).to have_http_status(:ok)
+        expect(account_type).to have_attributes(:name => "Cheques")
       end
 
       it "renders a JSON response with the account_type" do

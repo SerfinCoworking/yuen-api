@@ -24,16 +24,16 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     @user.update!(user_params)
-
-    json_response(@user, :updated)
+    
+    json_response(@user, :ok)
   end
 
   # DELETE /users/1
   def destroy
     @user.destroy
+    head :no_content
   end
 
-  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
