@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'swagger_helper'
 
 RSpec.describe 'accounts API', type: :request do
   # initialize test data 

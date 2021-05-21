@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
-  include Response
-  include ExceptionHandler
-
+  
   before_action :set_user, only: [:show, :update, :destroy]
 
+  
   # GET /users
   def index
     @users = User.all
-
     json_response(@users)
   end
 
@@ -44,6 +42,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username)
+      params.require(:user).permit(:name)
     end
 end

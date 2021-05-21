@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'swagger_helper'
 
 RSpec.describe "/companies", type: :request do
 

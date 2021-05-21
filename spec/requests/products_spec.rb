@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'swagger_helper'
 
 RSpec.describe "/products", type: :request, swagger_doc: 'v2/swagger.json' do
 

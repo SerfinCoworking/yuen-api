@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_180135) do
+ActiveRecord::Schema.define(version: 2021_05_08_135659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,13 +73,34 @@ ActiveRecord::Schema.define(version: 2021_05_01_180135) do
     t.index ["company_id"], name: "index_products_on_company_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
+  create_table "stock_locations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_stock_locations_on_company_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.boolean "email_verified"
+    t.string "email"
+    t.string "auth0_id"
+    t.string "username"
+    t.string "phone_number"
+    t.boolean "phone_verified"
+    t.string "picture"
+    t.string "name"
+    t.string "nickname"
+    t.boolean "blocked"
+    t.string "given_name"
+    t.string "family_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
   end
 
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
   add_foreign_key "products", "companies"
+  add_foreign_key "stock_locations", "companies"
 end
