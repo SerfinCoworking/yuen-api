@@ -3,6 +3,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
     create_table :accounts do |t|
       t.references :user, null: false, index: true
       t.references :account_type, null: false, index: true
+      t.references :company, null: false, index: true
       t.string :name
       t.string :account_alias
       t.string :cbu
