@@ -1,7 +1,4 @@
 class ProductCategoriesController < ApplicationController
-  include Response
-  include ExceptionHandler
-  
   before_action :set_product_category, only: [:show, :update, :destroy]
 
   # GET /product_categories

@@ -1,7 +1,4 @@
 class StockLocationsController < ApplicationController
-  include Response
-  include ExceptionHandler
-
   before_action :set_stock_location, only: [:show, :update, :destroy]
 
   # GET /stock_locations

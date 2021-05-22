@@ -1,7 +1,4 @@
 class CompanyUsersController < ApplicationController
-  include Response
-  include ExceptionHandler
-
   before_action :set_company_user, only: [:show, :update, :destroy]
 
   # GET /company_users

@@ -1,7 +1,4 @@
 class CompaniesController < ApplicationController
-  include Response
-  include ExceptionHandler
-
   before_action :set_company, only: [:show, :update, :destroy]
 
   # GET /companies
