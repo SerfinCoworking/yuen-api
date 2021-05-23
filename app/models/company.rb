@@ -9,6 +9,4 @@ class Company < ApplicationRecord
 
   # Validations
   validates :name, presence: true
-
-  has_one_attached :logo
 end

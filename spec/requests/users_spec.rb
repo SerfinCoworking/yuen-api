@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe "/users", type: :request do
 
   let(:valid_attributes) {
-    { username: Faker::Internet.email }
+    {
+      name: Faker::Name.first_name,
+      given_name: Faker::Name.name,
+      family_name: Faker::Name.last_name
+    }
   }
 
   let(:invalid_attributes) {

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :companies, through: :company_users
 
   # Validations
-  validate :name, presence: true
-  validate :givenname, presence: true
-  validate :familyname, presence: true
+  validates :name, presence: true
+  validates :given_name, presence: true
+  validates :family_name, presence: true
 end

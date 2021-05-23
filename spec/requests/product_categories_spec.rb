@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "/product_categories", type: :request do
+  let!(:company) { create(:company) }
 
   let(:valid_attributes) {
-    { name: Faker::Vehicle.car_type }
+    { name: Faker::Vehicle.car_type, company_id: company.id }
   }
 
   let(:invalid_attributes) {

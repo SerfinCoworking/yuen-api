@@ -4,6 +4,7 @@ RSpec.describe 'accounts API', type: :request do
   # initialize test data 
   
   let!(:account_type) { create(:account_type) }
+  let!(:company) { create(:company) }
 
   let(:valid_attributes) { 
     { 
@@ -12,12 +13,13 @@ RSpec.describe 'accounts API', type: :request do
       description: "Cuenta",
       balance: Faker::Number.number(digits: 5),
       user_id: 1,
-      account_type_id: account_type.id
+      account_type_id: account_type.id,
+      company_id: company.id
     } 
   }
 
   let(:invalid_attributes) { 
-    { name: nil, cbu: nil, description: nil, balance: nil, user_id: nil, account_type: nil } 
+    { name: nil, cbu: nil, description: nil, balance: nil, user_id: nil, account_type: nil, company: nil } 
   }
 
   let(:valid_headers) {

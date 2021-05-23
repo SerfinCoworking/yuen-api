@@ -1,4 +1,4 @@
-100.times { 
+100.times {
   Company.create(
     name: Faker::Company.name, 
     logo: Faker::Company.logo, 
