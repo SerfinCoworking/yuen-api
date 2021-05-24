@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_135659) do
+ActiveRecord::Schema.define(version: 2021_05_24_035550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,21 @@ ActiveRecord::Schema.define(version: 2021_05_08_135659) do
     t.index ["user_id"], name: "index_company_users_on_user_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "nickname"
+    t.string "address"
+    t.string "phone"
+    t.string "cuit"
+    t.string "email"
+    t.string "organization"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_customers_on_company_id"
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.bigint "parent_id"
     t.bigint "company_id", null: false
@@ -76,6 +91,17 @@ ActiveRecord::Schema.define(version: 2021_05_08_135659) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["company_id"], name: "index_products_on_company_id"
+  end
+
+  create_table "providers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "cuit"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_providers_on_company_id"
   end
 
   create_table "stock_locations", force: :cascade do |t|
@@ -106,6 +132,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_135659) do
 
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
+  add_foreign_key "customers", "companies"
   add_foreign_key "products", "companies"
+  add_foreign_key "providers", "companies"
   add_foreign_key "stock_locations", "companies"
 end

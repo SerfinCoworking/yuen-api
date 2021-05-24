@@ -8,7 +8,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
       t.string :phone
       t.string :cuit
       t.string :email
-      t.name :organization
+      t.string :organization
       t.references :company, null: false, foreign_key: true, index: true
 
       t.timestamps

@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many :stock_locations
   has_many :accounts
   has_many :customers
+  has_many :providers
 
   # Validations
   validates :name, presence: true
