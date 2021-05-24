@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.boolean :blocked
       t.string :given_name
       t.string :family_name
+      t.references :current_company, index: true, null: false
 
       t.timestamps
     end

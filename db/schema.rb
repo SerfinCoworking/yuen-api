@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_035550) do
 
   create_table "providers", force: :cascade do |t|
     t.string "name"
+    t.string "email"
     t.string "address"
     t.string "phone"
     t.string "cuit"
@@ -125,9 +126,11 @@ ActiveRecord::Schema.define(version: 2021_05_24_035550) do
     t.boolean "blocked"
     t.string "given_name"
     t.string "family_name"
+    t.bigint "current_company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
+    t.index ["current_company_id"], name: "index_users_on_current_company_id"
   end
 
   add_foreign_key "company_users", "companies"
