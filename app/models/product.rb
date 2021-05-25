@@ -4,7 +4,5 @@ class Product < ApplicationRecord
   belongs_to :category, class_name: 'ProductCategory'
 
   # Validations
-  validates :name, presence: true
-  validates :company, presence: true
-  validates :category, presence: true
+  validates_presence_of :name, :company, :category
 end

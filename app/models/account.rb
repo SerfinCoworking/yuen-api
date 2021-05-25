@@ -4,7 +4,5 @@ class Account < ApplicationRecord
   belongs_to :company
 
   # Validations
-  validates :name, presence: true
-  validates :account_type, presence: true
-  validates :company, presence: true
+  validates_presence_of :name, :account_type, :company
 end

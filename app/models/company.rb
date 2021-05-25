@@ -10,6 +10,5 @@ class Company < ApplicationRecord
   has_many :providers
 
   # Validations
-  validates :name, presence: true
-  validates :email, presence: true
+  validates_presence_of :name, :email
 end

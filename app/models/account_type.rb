@@ -3,5 +3,5 @@ class AccountType < ApplicationRecord
   has_many :accounts
 
   # Validations
-  validates :name, presence: true
+  validates_presence_of :name
 end

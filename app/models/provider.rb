@@ -3,7 +3,5 @@ class Provider < ApplicationRecord
   belongs_to :company
 
   # Validations
-  validates :name, presence: true
-  validates :email, presence: true
-  valiadtes :company, presence: true
+  validates_presence_of :name, :email, :company
 end

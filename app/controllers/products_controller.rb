@@ -16,7 +16,8 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(product_params)
-    @product.company = current_user.company
+    @product.company = current_user.current_company
+    @product.save!
     
     json_response(@product, :created)
   end

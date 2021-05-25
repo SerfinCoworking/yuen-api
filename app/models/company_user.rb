@@ -4,6 +4,5 @@ class CompanyUser < ApplicationRecord
   belongs_to :company
 
   # Validations
-  validates :user, presence: true
-  validates :company, presence: true
+  validates_presence_of :user, :company
 end
