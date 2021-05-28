@@ -6,7 +6,9 @@ class Company < ApplicationRecord
   has_many :product_categories
   has_many :stock_locations
   has_many :accounts
+  has_many :customers
+  has_many :providers
 
   # Validations
-  validates :name, presence: true
+  validates_presence_of :name, :email
 end

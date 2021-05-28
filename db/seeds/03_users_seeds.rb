@@ -1,3 +1,5 @@
+offset = rand(Company.count)
+
 User.create({
               email_verified: true,
               email: 'eugesma@gmail.com',
@@ -10,6 +12,8 @@ User.create({
               given_name: 'Eugenio',
               family_name: 'Gomez'
             })
+
+offset = rand(Company.count)
 
 User.create({
               email_verified: true,
@@ -24,6 +28,8 @@ User.create({
               family_name: 'Rigol'
             })
 
+offset = rand(Company.count)
+
 User.create({
               email_verified: true,
               email: 'rodrigo.chavez@est.fi.uncoma.edu.ar',
@@ -36,6 +42,8 @@ User.create({
               given_name: 'Rodrigo Matias',
               family_name: 'Chavez'
             })
+
+offset = rand(Company.count)
 
 User.create({
               email_verified: true,

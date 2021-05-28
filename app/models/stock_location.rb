@@ -2,6 +2,5 @@ class StockLocation < ApplicationRecord
   belongs_to :company
   
   # Validations
-  validates :name, presence: true
-  validates :company, presence: true
+  validates_presence_of :name, :company
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "/companies", type: :request do
 
   let(:valid_attributes) {
-    { name: 'Tesla' }
+    { name: 'Tesla', email: Faker::Internet.email }
   }
 
   let(:invalid_attributes) {
@@ -14,6 +14,7 @@ RSpec.describe "/companies", type: :request do
     {}
   }
 
+  before { allow(controller).to receive(:authenticate_request!).and_return(true) }
 
   describe 'GET #index' do
     before { get companies_path }

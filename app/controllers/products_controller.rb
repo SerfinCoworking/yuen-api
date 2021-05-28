@@ -15,8 +15,10 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.create!(product_params)
-
+    @product = Product.new(product_params)
+    @product.company = current_user.current_company
+    @product.save!
+    
     json_response(@product, :created)
   end
 
@@ -41,6 +43,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:barcode, :name, :description, :company_id, :category_id)
+      params.require(:product).permit(:barcode, :name, :description, :category_id, :unity_id)
     end
 end

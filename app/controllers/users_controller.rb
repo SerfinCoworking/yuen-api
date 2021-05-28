@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  def create
+  def register
     @user = User.create!(user_params)
 
     json_response(@user, :created)
@@ -40,6 +40,20 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(
+        :email_verified,
+        :email,
+        :auth0_id,
+        :username,
+        :phone_number,
+        :phone_verified,
+        :picture,
+        :name,
+        :nickname,
+        :blocked,
+        :given_name,
+        :family_name,
+        :current_company_id
+      )
     end
 end
