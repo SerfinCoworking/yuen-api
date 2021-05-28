@@ -5,5 +5,5 @@ class Product < ApplicationRecord
   belongs_to :unity
 
   # Validations
-  validates_presence_of :name, :company, :category, :unity
+  validates_presence_of :name, :company, :category, :unity, :quantity_per_unit
 end
