@@ -10,7 +10,8 @@ User.create({
               nickname: 'eugesma',
               blocked: false,
               given_name: 'Eugenio',
-              family_name: 'Gomez'
+              family_name: 'Gomez',
+              current_company: Company.find(offset)
             })
 
 offset = rand(Company.count)
@@ -25,7 +26,8 @@ User.create({
               nickname: 'shaaamsuu',
               blocked: false,
               given_name: 'Ali',
-              family_name: 'Rigol'
+              family_name: 'Rigol',
+              current_company: Company.find(offset)
             })
 
 offset = rand(Company.count)
@@ -40,7 +42,8 @@ User.create({
               nickname: 'rodrigo.chavez',
               blocked: false,
               given_name: 'Rodrigo Matias',
-              family_name: 'Chavez'
+              family_name: 'Chavez',
+              current_company: Company.find(offset)
             })
 
 offset = rand(Company.count)
@@ -55,7 +58,8 @@ User.create({
               nickname: 'paul.18.sma',
               blocked: false,
               given_name: 'Paul',
-              family_name: 'Ibaceta'
+              family_name: 'Ibaceta',
+              current_company: Company.find(offset)
             })
 
 User.create({
