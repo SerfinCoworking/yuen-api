@@ -15,7 +15,9 @@ class ProductCategoriesController < ApplicationController
 
   # POST /product_categories
   def create
-    @product_category = ProductCategory.create!(product_category_params)
+    @product_category = ProductCategory.new(product_category_params)
+    @product_category.company = current_user.current_company
+    @product_category.save!
 
     json_response(@product_category, :created)
   end
