@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_225237) do
+ActiveRecord::Schema.define(version: 2021_05_30_145232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,28 @@ ActiveRecord::Schema.define(version: 2021_05_28_225237) do
     t.index ["company_id"], name: "index_providers_on_company_id"
   end
 
+  create_table "purchase_products", force: :cascade do |t|
+    t.bigint "purchase_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.integer "presentation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_purchase_products_on_product_id"
+    t.index ["purchase_id"], name: "index_purchase_products_on_purchase_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "provider_id", null: false
+    t.bigint "company_id", null: false
+    t.integer "status"
+    t.decimal "total_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_purchases_on_company_id"
+    t.index ["provider_id"], name: "index_purchases_on_provider_id"
+  end
+
   create_table "stock_locations", force: :cascade do |t|
     t.string "name"
     t.bigint "company_id", null: false
@@ -152,5 +174,9 @@ ActiveRecord::Schema.define(version: 2021_05_28_225237) do
   add_foreign_key "products", "companies"
   add_foreign_key "products", "unities"
   add_foreign_key "providers", "companies"
+  add_foreign_key "purchase_products", "products"
+  add_foreign_key "purchase_products", "purchases"
+  add_foreign_key "purchases", "companies"
+  add_foreign_key "purchases", "providers"
   add_foreign_key "stock_locations", "companies"
 end
