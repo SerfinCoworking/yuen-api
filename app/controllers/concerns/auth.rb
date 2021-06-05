@@ -2,8 +2,8 @@ module Auth
   # esto es poco elegante, hay que buscar una opcion mas elegante
   # tome los scopes desde un archivo de scopes
   SCOPES = {
-    '/users' => ['read:users'],
-    '/products' => ['read:products']
+    '/users' => ['index:users'],
+    '/products' => ['index:products']
   }
 
   def authorize_request
