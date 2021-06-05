@@ -15,16 +15,18 @@ class ProvidersController < ApplicationController
 
   # POST /providers
   def create
-    @provider = Provider.create!(provider_params)
+    @provider = Provider.new(provider_params)
+    @provider.company = current_user.current_company
+    @provider.save!
     
-    json_response(@product, :created)
+    json_response(@provider, :created)
   end
 
   # PATCH/PUT /providers/1
   def update
     @provider.update!(provider_params)
     
-    json_response(@product, :ok)
+    json_response(@provider, :ok)
   end
 
   # DELETE /providers/1
@@ -41,6 +43,6 @@ class ProvidersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def provider_params
-      params.require(:provider).permit(:name, :email, :address, :phone, :cuit)
+      params.require(:provider).permit(:name, :email, :address, :phone, :cuit, :webpage)
     end
 end

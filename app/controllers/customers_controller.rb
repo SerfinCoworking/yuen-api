@@ -15,7 +15,9 @@ class CustomersController < ApplicationController
 
   # POST /customers
   def create
-    @customer = Customer.create!(customer_params)
+    @customer = Customer.new(customer_params)
+    @customer.company = current_user.current_company
+    @customer.save!
 
     json_response(@customer, :created)
   end
