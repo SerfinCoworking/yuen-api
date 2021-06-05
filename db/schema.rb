@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_145232) do
+ActiveRecord::Schema.define(version: 2021_06_05_123743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2021_05_30_145232) do
     t.index ["unity_id"], name: "index_products_on_unity_id"
   end
 
+  create_table "provider_categories", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_provider_categories_on_company_id"
+  end
+
   create_table "providers", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -105,6 +114,9 @@ ActiveRecord::Schema.define(version: 2021_05_30_145232) do
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "webpage"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_providers_on_category_id"
     t.index ["company_id"], name: "index_providers_on_company_id"
   end
 
@@ -173,6 +185,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_145232) do
   add_foreign_key "customers", "companies"
   add_foreign_key "products", "companies"
   add_foreign_key "products", "unities"
+  add_foreign_key "provider_categories", "companies"
   add_foreign_key "providers", "companies"
   add_foreign_key "purchase_products", "products"
   add_foreign_key "purchase_products", "purchases"
