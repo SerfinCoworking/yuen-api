@@ -4,5 +4,5 @@ class Customer < ApplicationRecord
   belongs_to :category, class_name: 'CustomerCategory'
 
   # Validations
-  validates_presence_of :first_name, :last_name, :email, :company_id
+  validates_presence_of :first_name, :last_name, :email, :company_id, :category_id
 end

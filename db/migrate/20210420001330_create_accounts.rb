@@ -1,9 +1,9 @@
 class CreateAccounts < ActiveRecord::Migration[6.1]
   def change
     create_table :accounts do |t|
-      t.references :user, null: false, index: true
-      t.references :account_type, null: false, index: true
-      t.references :company, null: false, index: true
+      t.references :user, null: false, index: true, foreign_key: true
+      t.references :account_type, null: false, index: true, foreign_key: true
+      t.references :company, null: false, index: true, foreign_key: true
       t.string :name
       t.string :account_alias
       t.string :cbu

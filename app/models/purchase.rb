@@ -8,5 +8,5 @@ class Purchase < ApplicationRecord
   accepts_nested_attributes_for :purchase_products
 
   # Validations
-  validates_presence_of :provider, :company
+  validates_presence_of :provider_id, :company_id
 end

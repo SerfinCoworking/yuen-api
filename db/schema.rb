@@ -122,11 +122,11 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
     t.string "address"
     t.string "phone"
     t.string "cuit"
+    t.string "webpage"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "webpage"
-    t.bigint "category_id"
+    t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_providers_on_category_id"
     t.index ["company_id"], name: "index_providers_on_company_id"
   end
@@ -191,18 +191,25 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
     t.index ["current_company_id"], name: "index_users_on_current_company_id"
   end
 
+  add_foreign_key "accounts", "account_types"
+  add_foreign_key "accounts", "companies"
+  add_foreign_key "accounts", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
   add_foreign_key "customer_categories", "companies"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "customer_categories", column: "category_id"
+  add_foreign_key "product_categories", "companies"
   add_foreign_key "products", "companies"
+  add_foreign_key "products", "product_categories", column: "category_id"
   add_foreign_key "products", "unities"
   add_foreign_key "provider_categories", "companies"
   add_foreign_key "providers", "companies"
+  add_foreign_key "providers", "provider_categories", column: "category_id"
   add_foreign_key "purchase_products", "products"
   add_foreign_key "purchase_products", "purchases"
   add_foreign_key "purchases", "companies"
   add_foreign_key "purchases", "providers"
   add_foreign_key "stock_locations", "companies"
+  add_foreign_key "users", "companies", column: "current_company_id"
 end

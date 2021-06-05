@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.boolean :blocked
       t.string :given_name
       t.string :family_name
-      t.references :current_company, index: true, null: false
+      t.references :current_company, index: true, null: false, foreign_key: { to_table: :companies }
 
       t.timestamps
     end
