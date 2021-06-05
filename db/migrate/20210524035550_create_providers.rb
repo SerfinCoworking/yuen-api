@@ -6,6 +6,7 @@ class CreateProviders < ActiveRecord::Migration[6.1]
       t.string :address
       t.string :phone
       t.string :cuit
+      t.string :webpage
       t.references :company, null: false, foreign_key: true
 
       t.timestamps
