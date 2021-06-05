@@ -6,5 +6,5 @@ class ProductCategory < ApplicationRecord
   has_many :products, foreign_key: :category_id
 
   # Validations
-  validates_presence_of :name, :company
+  validates_presence_of :name, :company_id
 end

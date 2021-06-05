@@ -43,6 +43,6 @@ class ProviderCategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def provider_category_params
-      params.require(:provider_category).permit(:company_id, :name, :description)
+      params.require(:provider_category).permit(:name, :description)
     end
 end

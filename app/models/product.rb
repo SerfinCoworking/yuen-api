@@ -7,5 +7,5 @@ class Product < ApplicationRecord
   has_many :purchases, through: :purchase_products
 
   # Validations
-  validates_presence_of :name, :company, :category, :unity, :quantity_per_unit
+  validates_presence_of :name, :company_id, :category, :unity, :quantity_per_unit
 end

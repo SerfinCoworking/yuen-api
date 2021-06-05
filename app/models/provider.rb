@@ -4,5 +4,5 @@ class Provider < ApplicationRecord
   belongs_to :category, class_name: 'CategoryProvider'
 
   # Validations
-  validates_presence_of :name, :email, :company, :category_id
+  validates_presence_of :name, :email, :company_id, :category_id
 end
