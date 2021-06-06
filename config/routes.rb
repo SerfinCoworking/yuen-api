@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :customer_categories
-  resources :provider_categories
   resources :unities
-  resources :providers
-  resources :customers
+  resources :providers do
+    collection do
+      resources :provider_categories, path: :categories
+    end
+  end
+  resources :customers do 
+    collection do
+      resources :customer_categories, path: :categories
+    end
+  end
   resources :stock_locations
   resources :users
   post 'auth/register', to: 'users#register'
