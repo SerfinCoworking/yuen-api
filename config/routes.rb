@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :price_lists
   resources :unities
   resources :providers do
     collection do

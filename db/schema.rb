@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_132318) do
+ActiveRecord::Schema.define(version: 2021_06_11_022622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
     t.index ["company_id"], name: "index_customers_on_company_id"
   end
 
+  create_table "price_lists", force: :cascade do |t|
+    t.string "name"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_price_lists_on_company_id"
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.bigint "parent_id"
     t.bigint "company_id", null: false
@@ -149,7 +157,12 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
     t.decimal "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reference_number"
+    t.date "date"
+    t.datetime "price_list_updated_date"
+    t.bigint "price_list_id", null: false
     t.index ["company_id"], name: "index_purchases_on_company_id"
+    t.index ["price_list_id"], name: "index_purchases_on_price_list_id"
     t.index ["provider_id"], name: "index_purchases_on_provider_id"
   end
 
@@ -199,6 +212,7 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
   add_foreign_key "customer_categories", "companies"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "customer_categories", column: "category_id"
+  add_foreign_key "price_lists", "companies"
   add_foreign_key "product_categories", "companies"
   add_foreign_key "products", "companies"
   add_foreign_key "products", "product_categories", column: "category_id"
@@ -209,6 +223,7 @@ ActiveRecord::Schema.define(version: 2021_06_05_132318) do
   add_foreign_key "purchase_products", "products"
   add_foreign_key "purchase_products", "purchases"
   add_foreign_key "purchases", "companies"
+  add_foreign_key "purchases", "price_lists"
   add_foreign_key "purchases", "providers"
   add_foreign_key "stock_locations", "companies"
   add_foreign_key "users", "companies", column: "current_company_id"
