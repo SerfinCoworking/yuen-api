@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  # Relations
+  # Relationships
   belongs_to :account_type
   belongs_to :company
 

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  # Relations
+  # Relationships
   belongs_to :company
   belongs_to :category, class_name: 'ProductCategory'
   belongs_to :unity

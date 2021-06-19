@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :update, :destroy]
+  before_action :set_purchase, only: %i[show update destroy]
 
   # GET /purchases
   def index
@@ -18,14 +18,14 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     @purchase.company = current_user.current_company
     @purchase.save!
-    
+
     json_response(@purchase, :created)
   end
 
   # PATCH/PUT /purchases/1
   def update
     @purchase.update!(purchase_params)
-    
+
     json_response(@purchase, :ok)
   end
 
@@ -36,13 +36,14 @@ class PurchasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_purchase
-      @purchase = Purchase.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def purchase_params
-      params.require(:purchase).permit(:reference_number, :date, :provider_id, :price_list_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_purchase
+    @purchase = Purchase.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def purchase_params
+    params.require(:purchase).permit(:reference_number, :date, :provider_id, :price_list_id)
+  end
 end

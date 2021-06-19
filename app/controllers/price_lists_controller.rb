@@ -1,5 +1,5 @@
 class PriceListsController < ApplicationController
-  before_action :set_price_list, only: [:show, :update, :destroy]
+  before_action :set_price_list, only: %i[show update destroy]
 
   # GET /price_lists
   def index
@@ -39,13 +39,14 @@ class PriceListsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_price_list
-      @price_list = PriceList.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def price_list_params
-      params.require(:price_list).permit(:name, :company_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_price_list
+    @price_list = PriceList.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def price_list_params
+    params.require(:price_list).permit(:name, :company_id)
+  end
 end

@@ -1,5 +1,5 @@
 class UnitiesController < ApplicationController
-  before_action :set_unity, only: [:show, :update, :destroy]
+  before_action :set_unity, only: %i[show update destroy]
 
   # GET /unities
   def index
@@ -23,7 +23,7 @@ class UnitiesController < ApplicationController
   # PATCH/PUT /unities/1
   def update
     @unity.update!(unity_params)
-    
+
     json_response(@unity, :ok)
   end
 
@@ -33,13 +33,14 @@ class UnitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_unity
-      @unity = Unity.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def unity_params
-      params.require(:unity).permit(:unity_type, :equivalence_type, :name, :symbol, :equivalence)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_unity
+    @unity = Unity.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def unity_params
+    params.require(:unity).permit(:unity_type, :equivalence_type, :name, :symbol, :equivalence)
+  end
 end

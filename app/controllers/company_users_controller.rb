@@ -1,5 +1,5 @@
 class CompanyUsersController < ApplicationController
-  before_action :set_company_user, only: [:show, :update, :destroy]
+  before_action :set_company_user, only: %i[show update destroy]
 
   # GET /company_users
   def index
@@ -16,14 +16,14 @@ class CompanyUsersController < ApplicationController
   # POST /company_users
   def create
     @company_user = CompanyUser.create!(company_user_params)
-    
+
     json_response(@company_user, :created)
   end
 
   # PATCH/PUT /company_users/1
   def update
     @company_user.update!(company_user_params)
-    
+
     json_response(@company_user, :ok)
   end
 
@@ -34,13 +34,14 @@ class CompanyUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company_user
-      @company_user = CompanyUser.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def company_user_params
-      params.require(:company_user).permit(:user_id, :company_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company_user
+    @company_user = CompanyUser.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def company_user_params
+    params.require(:company_user).permit(:user_id, :company_id)
+  end
 end

@@ -1,5 +1,5 @@
 class ProductCategory < ApplicationRecord
-  # Relations
+  # Relationships
   belongs_to :company
   belongs_to :parent, optional: true
   has_many :subcategories, class_name: 'ProductCategory', foreign_key: :parent_id

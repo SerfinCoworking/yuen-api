@@ -18,7 +18,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
     @provider.company = current_user.current_company
     @provider.save!
-    
+
     json_response(@provider, :created)
   end
 
@@ -36,13 +36,14 @@ class ProvidersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_provider
-      @provider = Provider.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def provider_params
-      params.require(:provider).permit(:name, :email, :address, :phone, :cuit, :webpage)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_provider
+    @provider = Provider.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def provider_params
+    params.require(:provider).permit(:name, :email, :address, :phone, :cuit, :webpage, :category_id)
+  end
 end

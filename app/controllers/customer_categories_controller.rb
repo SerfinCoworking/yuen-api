@@ -1,5 +1,5 @@
 class CustomerCategoriesController < ApplicationController
-  before_action :set_customer_category, only: [:show, :update, :destroy]
+  before_action :set_customer_category, only: %i[show update destroy]
 
   # GET /customer_categories
   def index
@@ -25,7 +25,7 @@ class CustomerCategoriesController < ApplicationController
   # PATCH/PUT /customer_categories/1
   def update
     @customer_category.update!(customer_category_params)
-    
+
     json_response(@customer_category, :ok)
   end
 
@@ -36,13 +36,14 @@ class CustomerCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer_category
-      @customer_category = CustomerCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def customer_category_params
-      params.require(:customer_category).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer_category
+    @customer_category = CustomerCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def customer_category_params
+    params.require(:customer_category).permit(:name, :description)
+  end
 end

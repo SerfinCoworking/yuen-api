@@ -32,17 +32,18 @@ class ProviderCategoriesController < ApplicationController
   # DELETE /provider_categories/1
   def destroy
     @provider_category.destroy
-    render :no_content
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_provider_category
-      @provider_category = ProviderCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def provider_category_params
-      params.require(:provider_category).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_provider_category
+    @provider_category = ProviderCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def provider_category_params
+    params.require(:provider_category).permit(:name, :description)
+  end
 end

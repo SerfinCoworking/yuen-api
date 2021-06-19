@@ -18,14 +18,14 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.company = current_user.current_company
     @product.save!
-    
+
     json_response(@product, :created)
   end
 
   # PATCH/PUT /products/1
   def update
     @product.update!(product_params)
-    
+
     json_response(@product, :ok)
   end
 
@@ -36,13 +36,14 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:barcode, :name, :description, :category_id, :quantity_per_unit, :unity_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:barcode, :name, :description, :category_id, :quantity_per_unit, :unity_id)
+  end
 end

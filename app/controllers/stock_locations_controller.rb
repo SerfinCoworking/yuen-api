@@ -1,5 +1,5 @@
 class StockLocationsController < ApplicationController
-  before_action :set_stock_location, only: [:show, :update, :destroy]
+  before_action :set_stock_location, only: %i[show update destroy]
 
   # GET /stock_locations
   def index
@@ -23,7 +23,7 @@ class StockLocationsController < ApplicationController
   # PATCH/PUT /stock_locations/1
   def update
     @stock_location.update!(stock_location_params)
-    
+
     json_response(@stock_location, :ok)
   end
 
@@ -35,13 +35,14 @@ class StockLocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stock_location
-      @stock_location = StockLocation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def stock_location_params
-      params.require(:stock_location).permit(:name, :company_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stock_location
+    @stock_location = StockLocation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def stock_location_params
+    params.require(:stock_location).permit(:name, :company_id)
+  end
 end

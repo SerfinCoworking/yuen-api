@@ -1,5 +1,5 @@
 class ProductCategoriesController < ApplicationController
-  before_action :set_product_category, only: [:show, :update, :destroy]
+  before_action :set_product_category, only: %i[show update destroy]
 
   # GET /product_categories
   def index
@@ -35,13 +35,14 @@ class ProductCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_category
-      @product_category = ProductCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_category_params
-      params.require(:product_category).permit(:parent_id, :name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_category
+    @product_category = ProductCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_category_params
+    params.require(:product_category).permit(:parent_id, :name)
+  end
 end

@@ -1,5 +1,5 @@
 class AccountType < ApplicationRecord
-  # Relations
+  # Relationships
   has_many :accounts
 
   # Validations

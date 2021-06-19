@@ -1,5 +1,5 @@
 class AccountTypesController < ApplicationController
-  before_action :set_account_type, only: [:show, :update, :destroy]
+  before_action :set_account_type, only: %i[show update destroy]
 
   # GET /account_types
   def index
@@ -34,13 +34,14 @@ class AccountTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_account_type
-      @account_type = AccountType.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def account_type_params
-      params.require(:account_type).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_account_type
+    @account_type = AccountType.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def account_type_params
+    params.require(:account_type).permit(:name)
+  end
 end

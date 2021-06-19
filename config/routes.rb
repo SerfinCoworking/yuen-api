@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :provider_categories, path: :categories
     end
   end
-  resources :customers do 
+  resources :customers do
     collection do
       resources :customer_categories, path: :categories
     end
