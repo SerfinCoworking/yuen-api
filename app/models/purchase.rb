@@ -9,4 +9,7 @@ class Purchase < ApplicationRecord
 
   # Validations
   validates_presence_of :provider_id, :company_id
+
+  # Scopes
+  scope :by_company, ->(a_company) { where(company: a_company) }
 end

@@ -3,7 +3,7 @@ class UnitiesController < ApplicationController
 
   # GET /unities
   def index
-    @unities = Unity.all
+    @unities = Unity.by_company(current_user.current_company)
 
     json_response(@unities)
   end

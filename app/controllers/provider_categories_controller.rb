@@ -3,7 +3,7 @@ class ProviderCategoriesController < ApplicationController
 
   # GET /provider_categories
   def index
-    @provider_categories = ProviderCategory.all
+    @provider_categories = ProviderCategory.by_company(current_user.current_company)
 
     json_response(@provider_categories)
   end

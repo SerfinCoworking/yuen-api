@@ -1,9 +1,9 @@
 class ProvidersController < ApplicationController
-  before_action :set_provider, only: [:show, :update, :destroy]
+  before_action :set_provider, only: %i[show update destroy]
 
   # GET /providers
   def index
-    @providers = Provider.all
+    @providers = Provider.by_company(current_user.current_company)
 
     json_response(@providers)
   end
@@ -25,7 +25,7 @@ class ProvidersController < ApplicationController
   # PATCH/PUT /providers/1
   def update
     @provider.update!(provider_params)
-    
+
     json_response(@provider, :ok)
   end
 

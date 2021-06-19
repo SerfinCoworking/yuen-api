@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
 
   # GET /purchases
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.by_company(current_user.current_company)
 
     json_response(@purchases)
   end

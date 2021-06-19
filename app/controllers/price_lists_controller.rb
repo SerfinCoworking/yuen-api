@@ -3,7 +3,7 @@ class PriceListsController < ApplicationController
 
   # GET /price_lists
   def index
-    @price_lists = PriceList.all
+    @price_lists = PriceList.by_company(current_user.current_company)
 
     render json: @price_lists
   end

@@ -3,7 +3,7 @@ class StockLocationsController < ApplicationController
 
   # GET /stock_locations
   def index
-    @stock_locations = StockLocation.all
+    @stock_locations = StockLocation.by_company(current_user.current_company)
 
     json_response(@stock_locations)
   end

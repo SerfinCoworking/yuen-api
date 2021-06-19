@@ -3,7 +3,7 @@ class CustomerCategoriesController < ApplicationController
 
   # GET /customer_categories
   def index
-    @customer_categories = CustomerCategory.all
+    @customer_categories = CustomerCategory.by_company(current_user.current_company)
 
     json_response(@customer_categories)
   end

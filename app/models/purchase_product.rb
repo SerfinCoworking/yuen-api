@@ -1,5 +1,5 @@
 class PurchaseProduct < ApplicationRecord
-  # Relationships 
+  # Relationships
   belongs_to :purchase
   belongs_to :product
 
