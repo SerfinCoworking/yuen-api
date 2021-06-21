@@ -17,16 +17,21 @@ class ProvidersController < ApplicationController
   def create
     @provider = Provider.new(provider_params)
     @provider.company = current_user.current_company
-    @provider.save!
 
-    json_response(@provider, :created)
+    if @provider.save
+      render json: @provider, status: :created
+    else
+      render_json_validation_error @provider
+    end
   end
 
   # PATCH/PUT /providers/1
   def update
-    @provider.update!(provider_params)
-
-    json_response(@provider, :ok)
+    if @provider.update(provider_params)
+      render json: @provider, status: :ok
+    else
+      render_json_validation_error @provider
+    end
   end
 
   # DELETE /providers/1

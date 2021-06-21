@@ -18,18 +18,18 @@ class PriceListsController < ApplicationController
     @price_list = PriceList.new(price_list_params)
 
     if @price_list.save
-      render json: @price_list, status: :created, location: @price_list
+      render json: @price_list, status: :created
     else
-      render json: @price_list.errors, status: :unprocessable_entity
+      render_json_validation_error @price_list
     end
   end
 
   # PATCH/PUT /price_lists/1
   def update
     if @price_list.update(price_list_params)
-      render json: @price_list
+      render json: @price_list, status: :created
     else
-      render json: @price_list.errors, status: :unprocessable_entity
+      render_json_validation_error @price_list
     end
   end
 

@@ -15,16 +15,22 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    @company = Company.create!(company_params)
+    @company = Company.new(company_params)
 
-    json_response(@company, :created)
+    if @company.save
+      render json: @company, status: :created
+    else
+      render_json_validation_error @company
+    end
   end
 
   # PATCH/PUT /companies/1
   def update
-    @company.update!(company_params)
-
-    json_response(@company, :ok)
+    if @company.update(company_params)
+      render json: @company, status: :ok
+    else
+      render_json_validation_error @company
+    end
   end
 
   # DELETE /companies/1

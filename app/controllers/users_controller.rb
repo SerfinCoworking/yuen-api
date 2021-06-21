@@ -14,16 +14,22 @@ class UsersController < ApplicationController
 
   # POST /users
   def register
-    @user = User.create!(user_params)
+    @user = User.new(user_params)
 
-    json_response(@user, :created)
+    if @user.save
+      render json: @user, status: :created
+    else
+      render_json_validation_error @user
+    end
   end
 
   # PATCH/PUT /users/1
   def update
-    @user.update!(user_params)
-
-    json_response(@user, :ok)
+    if @user.update(user_params)
+      render json: @user, status: :created
+    else
+      render_json_validation_error @user
+    end
   end
 
   # DELETE /users/1

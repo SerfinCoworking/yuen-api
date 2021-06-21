@@ -15,16 +15,22 @@ class UnitiesController < ApplicationController
 
   # POST /unities
   def create
-    @unity = Unity.create!(unity_params)
+    @unity = Unity.new(unity_params)
 
-    json_response(@unity, :created)
+    if @unity.save
+      render json: @unity, status: :created
+    else
+      render_json_validation_error @unity
+    end
   end
 
   # PATCH/PUT /unities/1
   def update
-    @unity.update!(unity_params)
-
-    json_response(@unity, :ok)
+    if @unity.update(unity_params)
+      render json: @unity, status: :ok
+    else
+      render_json_validation_error @unity
+    end
   end
 
   # DELETE /unities/1

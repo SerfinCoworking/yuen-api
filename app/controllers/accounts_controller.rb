@@ -15,15 +15,22 @@ class AccountsController < ApplicationController
 
   # POST /accounts
   def create
-    @account = Account.create!(account_params)
+    @account = Account.new(account_params)
 
-    json_response(@account, :created)
+    if @account.save
+      render json: @account, status: :created
+    else
+      render_json_validation_error @account
+    end
   end
 
   # PATCH/PUT /accounts/1
   def update
-    @account.update!(account_params)
-    json_response(@account, :ok)
+    if @account.update(account_params)
+      render json: @account, status: :ok
+    else
+      render_json_validation_error @account
+    end
   end
 
   # DELETE /accounts/1

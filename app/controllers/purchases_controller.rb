@@ -17,16 +17,21 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.company = current_user.current_company
-    @purchase.save!
 
-    json_response(@purchase, :created)
+    if @purchase.save
+      render json: @purchase, status: :created
+    else
+      render_json_validation_error @purchase
+    end
   end
 
   # PATCH/PUT /purchases/1
   def update
-    @purchase.update!(purchase_params)
-
-    json_response(@purchase, :ok)
+    if @purchase.update(purchase_params)
+      render json: @purchase, status: :ok
+    else
+      render_json_validation_error @purchase
+    end
   end
 
   # DELETE /purchases/1

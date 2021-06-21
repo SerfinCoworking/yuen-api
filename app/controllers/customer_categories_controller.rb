@@ -17,16 +17,21 @@ class CustomerCategoriesController < ApplicationController
   def create
     @customer_category = CustomerCategory.new(customer_category_params)
     @customer_category.company = current_user.current_company
-    @customer_category.save!
 
-    json_response(@customer_category, :created)
+    if @customer_category.save
+      render json: @customer_category, status: :created
+    else
+      render_json_validation_error @customer_category
+    end
   end
 
   # PATCH/PUT /customer_categories/1
   def update
-    @customer_category.update!(customer_category_params)
-
-    json_response(@customer_category, :ok)
+    if @customer_category.update(customer_category_params)
+      render json: @customer_category, status: :ok
+    else
+      render_json_validation_error @customer_category
+    end
   end
 
   # DELETE /customer_categories/1

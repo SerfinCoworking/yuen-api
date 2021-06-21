@@ -15,16 +15,22 @@ class StockLocationsController < ApplicationController
 
   # POST /stock_locations
   def create
-    @stock_location = StockLocation.create!(stock_location_params)
+    @stock_location = StockLocation.new(stock_location_params)
 
-    json_response(@stock_location, :created)
+    if @stock_location.save
+      render json: @stock_location, status: :created
+    else
+      render_json_validation_error @stock_location
+    end
   end
 
   # PATCH/PUT /stock_locations/1
   def update
-    @stock_location.update!(stock_location_params)
-
-    json_response(@stock_location, :ok)
+    if @stock_location.update(stock_location_params)
+      render json: @stock_location, status: :ok
+    else
+      render_json_validation_error @stock_location
+    end
   end
 
   # DELETE /stock_locations/1

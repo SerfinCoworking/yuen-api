@@ -15,9 +15,13 @@ class AccountTypesController < ApplicationController
 
   # POST /account_types
   def create
-    @account_type = AccountType.create!(account_type_params)
+    @account_type = AccountType.new(account_type_params)
 
-    json_response(@account_type, :created)
+    if @account_type.save
+      render json: @account_type, status: :created
+    else
+      render_json_validation_error @account_type
+    end
   end
 
   # PATCH/PUT /account_types/1

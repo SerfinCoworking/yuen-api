@@ -17,16 +17,21 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     @customer.company = current_user.current_company
-    @customer.save!
 
-    json_response(@customer, :created)
+    if @customer.save
+      render json: @customer, status: :created
+    else
+      render_json_validation_error @customer
+    end
   end
 
   # PATCH/PUT /customers/1
   def update
-    @customer.update!(customer_params)
-
-    json_response(@customer, :ok)
+    if @customer.update(customer_params)
+      render json: @customer, status: :ok
+    else
+      render_json_validation_error @customer
+    end
   end
 
   # DELETE /customers/1

@@ -17,15 +17,21 @@ class ProductCategoriesController < ApplicationController
   def create
     @product_category = ProductCategory.new(product_category_params)
     @product_category.company = current_user.current_company
-    @product_category.save!
 
-    json_response(@product_category, :created)
+    if @product_category.save
+      render json: @product_category, status: :created
+    else
+      render_json_validation_error @product_category
+    end
   end
 
   # PATCH/PUT /product_categories/1
   def update
-    @product_category.update!(product_category_params)
-    json_response(@product_category, :ok)
+    if @product_category.update(product_category_params)
+      render json: @product_category, status: :ok
+    else
+      render_json_validation_error @product_category
+    end
   end
 
   # DELETE /product_categories/1

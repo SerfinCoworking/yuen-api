@@ -15,16 +15,22 @@ class CompanyUsersController < ApplicationController
 
   # POST /company_users
   def create
-    @company_user = CompanyUser.create!(company_user_params)
+    @company_user = CompanyUser.new(company_user_params)
 
-    json_response(@company_user, :created)
+    if @company_user.save
+      render json: @company_user, status: :created
+    else
+      render_json_validation_error @company_user
+    end
   end
 
   # PATCH/PUT /company_users/1
   def update
-    @company_user.update!(company_user_params)
-
-    json_response(@company_user, :ok)
+    if @company_user.update(company_user_params)
+      render json: @company_user, status: :ok
+    else
+      render_json_validation_error @company_user
+    end
   end
 
   # DELETE /company_users/1
