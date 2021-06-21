@@ -10,4 +10,6 @@ class Product < ApplicationRecord
 
   # Validations
   validates_presence_of :name, :company_id, :category_id, :unity_id, :quantity_per_unit
+
+  validates :quantity_per_unit, numericality: { only_integer: true, greater_than: 2 }
 end

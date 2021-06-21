@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resources :companies
   resources :account_types
   resources :accounts
+  resources :purchases
+  resources :purchase_products
 end
