@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  include CompanyScope
+
   # Relationships
   belongs_to :company
   belongs_to :category, class_name: 'ProductCategory'
@@ -8,7 +10,4 @@ class Product < ApplicationRecord
 
   # Validations
   validates_presence_of :name, :company_id, :category_id, :unity_id, :quantity_per_unit
-
-  # Scopes
-  scope :by_company, ->(a_company) { where(company: a_company) }
 end
