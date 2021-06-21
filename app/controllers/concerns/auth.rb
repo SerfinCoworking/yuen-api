@@ -36,7 +36,9 @@ module Auth
     if SCOPES[@path_info].nil?
       true
     else
-      (String(@auth_payload[0]['scope']).split(' ') & (SCOPES[@path_info])).any?
+      # (String(@auth_payload[0]['scope']).split(' ') & (SCOPES[@path_info])).any?
+      # Permit until implement roles
+      true
     end
   end
 
