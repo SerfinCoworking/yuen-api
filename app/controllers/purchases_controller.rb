@@ -28,7 +28,7 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   def update
     if @purchase.update(purchase_params)
-      render json: @purchase, status: :ok
+      render json: @purchase, status: :accepted
     else
       render_json_validation_error @purchase
     end
@@ -49,6 +49,6 @@ class PurchasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def purchase_params
-    params.require(:purchase).permit(:reference_number, :date, :provider_id)
+    params.require(:purchase).permit(:reference_number, :date, :provider_id, :total_price)
   end
 end

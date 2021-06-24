@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: @user, status: :created
+      render json: @user, status: :accepted
     else
       render_json_validation_error @user
     end

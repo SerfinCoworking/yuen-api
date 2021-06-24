@@ -28,7 +28,7 @@ class CustomerCategoriesController < ApplicationController
   # PATCH/PUT /customer_categories/1
   def update
     if @customer_category.update(customer_category_params)
-      render json: @customer_category, status: :ok
+      render json: @customer_category, status: :accepted
     else
       render_json_validation_error @customer_category
     end

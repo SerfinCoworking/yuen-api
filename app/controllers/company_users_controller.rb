@@ -27,7 +27,7 @@ class CompanyUsersController < ApplicationController
   # PATCH/PUT /company_users/1
   def update
     if @company_user.update(company_user_params)
-      render json: @company_user, status: :ok
+      render json: @company_user, status: :accepted
     else
       render_json_validation_error @company_user
     end

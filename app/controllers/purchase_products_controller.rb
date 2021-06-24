@@ -28,7 +28,7 @@ class PurchaseProductsController < ApplicationController
   # PATCH/PUT /purchase_products/1
   def update
     if @purchase_product.update(purchase_product_params)
-      render json: @purchase_product, status: :ok
+      render json: @purchase_product, status: :accepted
     else
       render_json_validation_error @purchase_product
     end
