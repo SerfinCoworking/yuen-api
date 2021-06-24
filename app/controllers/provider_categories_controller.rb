@@ -28,7 +28,7 @@ class ProviderCategoriesController < ApplicationController
   # PATCH/PUT /provider_categories/1
   def update
     if @provider_category.update(provider_category_params)
-      render json: @provider_category, status: :ok
+      render json: @provider_category, status: :accepted
     else
       render_json_validation_error @provider_category
     end

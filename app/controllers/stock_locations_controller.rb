@@ -27,7 +27,7 @@ class StockLocationsController < ApplicationController
   # PATCH/PUT /stock_locations/1
   def update
     if @stock_location.update(stock_location_params)
-      render json: @stock_location, status: :ok
+      render json: @stock_location, status: :accepted
     else
       render_json_validation_error @stock_location
     end

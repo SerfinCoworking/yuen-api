@@ -28,7 +28,7 @@ class ProvidersController < ApplicationController
   # PATCH/PUT /providers/1
   def update
     if @provider.update(provider_params)
-      render json: @provider, status: :ok
+      render json: @provider, status: :accepted
     else
       render_json_validation_error @provider
     end

@@ -27,7 +27,7 @@ class PriceListsController < ApplicationController
   # PATCH/PUT /price_lists/1
   def update
     if @price_list.update(price_list_params)
-      render json: @price_list, status: :created
+      render json: @price_list, status: :accepted
     else
       render_json_validation_error @price_list
     end
