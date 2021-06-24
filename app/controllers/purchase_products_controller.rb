@@ -16,8 +16,6 @@ class PurchaseProductsController < ApplicationController
   # POST /purchase_products
   def create
     @purchase_product = PurchaseProduct.new(purchase_product_params)
-    @purchase_product.company = current_user.current_company
-
     if @purchase_product.save
       render json: @purchase_product, status: :created
     else
@@ -49,6 +47,6 @@ class PurchaseProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def purchase_product_params
-    params.require(:purchase_product).permit(:reference_number, :date, :provider_id, :price_list_id)
+    params.require(:purchase_product).permit(:purchase_id, :product_id, :quantity, :presentation)
   end
 end
