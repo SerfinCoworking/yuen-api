@@ -3,7 +3,7 @@ class AccountTypesController < ApplicationController
 
   # GET /account_types
   def index
-    @account_types = AccountType.all
+    @account_types = AccountType.by_company(current_user.company)
 
     json_response(@account_types)
   end
@@ -46,6 +46,6 @@ class AccountTypesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def account_type_params
-    params.require(:account_type).permit(:name)
+    params.require(:account_type).permit(:name, :company_id)
   end
 end
