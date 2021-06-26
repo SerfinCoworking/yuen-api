@@ -5,6 +5,6 @@ class User < ApplicationRecord
   belongs_to :current_company, class_name: 'Company'
 
   # Validations
-  validates_presence_of :name, :given_name, :family_name, :current_company_id, :email, :auth0_id, :username
+  validates_presence_of :current_company_id, :email, :auth0_id, :username
   validates_uniqueness_of :auth0_id
 end
