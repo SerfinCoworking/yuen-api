@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
   # PATCH/PUT /accounts/1
   def update
     if @account.update(account_params)
-      render json: @account, status: ::accepted
+      render json: @account, status: :accepted
     else
       render_json_validation_error @account
     end
