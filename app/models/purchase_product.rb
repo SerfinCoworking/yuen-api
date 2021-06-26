@@ -12,6 +12,6 @@ class PurchaseProduct < ApplicationRecord
   before_save :calc_total_line
 
   def calc_total_line
-    self.total_line = quantity * presentation
+    self.total_line = quantity * presentation * cost_price
   end
 end
