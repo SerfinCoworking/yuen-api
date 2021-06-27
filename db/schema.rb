@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_184501) do
+ActiveRecord::Schema.define(version: 2021_06_27_152500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,18 @@ ActiveRecord::Schema.define(version: 2021_06_26_184501) do
     t.index ["company_id"], name: "index_stock_locations_on_company_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "company_id", null: false
+    t.integer "available_quantity", default: 0
+    t.integer "reserved_quantity", default: 0
+    t.integer "total_quantity", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_stocks_on_company_id"
+    t.index ["product_id"], name: "index_stocks_on_product_id"
+  end
+
   create_table "unities", force: :cascade do |t|
     t.integer "unity_type"
     t.string "name"
@@ -229,5 +241,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_184501) do
   add_foreign_key "purchases", "companies"
   add_foreign_key "purchases", "providers"
   add_foreign_key "stock_locations", "companies"
+  add_foreign_key "stocks", "companies"
+  add_foreign_key "stocks", "products"
   add_foreign_key "users", "companies", column: "current_company_id"
 end

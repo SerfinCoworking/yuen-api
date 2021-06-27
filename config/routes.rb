@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :accounts
   resources :purchases
   resources :purchase_products
+  resources :stocks, only: %i[index show]
 end
