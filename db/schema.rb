@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_213244) do
+ActiveRecord::Schema.define(version: 2021_06_27_230712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_213244) do
   end
 
   create_table "accounts", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "account_type_id", null: false
     t.bigint "company_id", null: false
     t.string "name"
@@ -36,7 +35,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_213244) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_type_id"], name: "index_accounts_on_account_type_id"
     t.index ["company_id"], name: "index_accounts_on_company_id"
-    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -241,7 +239,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_213244) do
   add_foreign_key "account_types", "companies"
   add_foreign_key "accounts", "account_types"
   add_foreign_key "accounts", "companies"
-  add_foreign_key "accounts", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
   add_foreign_key "customer_categories", "companies"
