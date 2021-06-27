@@ -1,6 +1,8 @@
 class Purchase < ApplicationRecord
   include CompanyScope
 
+  enum status: { in_progress: 0, received: 1 }
+
   # Relationships
   belongs_to :provider
   belongs_to :company

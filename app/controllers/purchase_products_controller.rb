@@ -42,7 +42,7 @@ class PurchaseProductsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_purchase_product
-    @purchase_product = Purchase.find(params[:id])
+    @purchase_product = PurchaseProduct.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_152500) do
+ActiveRecord::Schema.define(version: 2021_06_27_213244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,25 @@ ActiveRecord::Schema.define(version: 2021_06_27_152500) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_customers_on_category_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
+  end
+
+  create_table "lots", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "company_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "provider_id", null: false
+    t.decimal "cost_price", default: "0.0"
+    t.date "manufacturing_date"
+    t.date "expiry_date"
+    t.integer "reserved_quantity", default: 0
+    t.integer "available_quantity", default: 0
+    t.integer "total_quantity", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_lots_on_company_id"
+    t.index ["product_id"], name: "index_lots_on_product_id"
+    t.index ["provider_id"], name: "index_lots_on_provider_id"
+    t.index ["stock_id"], name: "index_lots_on_stock_id"
   end
 
   create_table "price_lists", force: :cascade do |t|
@@ -228,6 +247,10 @@ ActiveRecord::Schema.define(version: 2021_06_27_152500) do
   add_foreign_key "customer_categories", "companies"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "customer_categories", column: "category_id"
+  add_foreign_key "lots", "companies"
+  add_foreign_key "lots", "products"
+  add_foreign_key "lots", "providers"
+  add_foreign_key "lots", "stocks"
   add_foreign_key "price_lists", "companies"
   add_foreign_key "product_categories", "companies"
   add_foreign_key "products", "companies"
