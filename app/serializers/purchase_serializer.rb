@@ -1,5 +1,6 @@
 class PurchaseSerializer < ActiveModel::Serializer
-  attributes :id, :provider, :company, :status, :total_price, :reference_number, :date, :price_list_updated_date
+  attributes :id, :provider, :company, :status, :total_price, :reference_number, :date, :price_list_updated_date, 
+             :purchase_products
 
   belongs_to :provider
   belongs_to :company

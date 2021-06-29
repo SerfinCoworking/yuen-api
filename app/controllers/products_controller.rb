@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     @product.company = current_user.current_company
 
     if @product.save
-      render json: @product, status: :created
+      json_created_response @product
     else
       render_json_validation_error @product
     end
