@@ -13,4 +13,11 @@ class Purchase < ApplicationRecord
 
   # Validations
   validates_presence_of :provider_id, :company_id
+
+  def receive
+    purchase_products.each do | purchase_product |
+      purchase_product.receive_stock
+    end
+    received!
+  end
 end

@@ -10,4 +10,9 @@ class Lot < ApplicationRecord
   # Validations
   validates_presence_of :stock, :company, :product, :provider, :reserved_quantity, :available_quantity, :total_quantity,
                         :cost_price
+
+  def increment_quantity(a_quantity)
+    self.available_quantity += a_quantity
+    save!        
+  end
 end

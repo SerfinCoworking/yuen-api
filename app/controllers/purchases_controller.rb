@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: %i[show update destroy]
+  before_action :set_purchase, only: %i[show update destroy receive]
+
 
   # GET /purchases
   def index
@@ -31,6 +32,16 @@ class PurchasesController < ApplicationController
       render json: @purchase, status: :accepted
     else
       render_json_validation_error @purchase
+    end
+  end
+
+  # GET /purchases/1/receive
+  def receive
+    if @purchase.received?
+      json_response({ message: 'Compra ya recibida' }, :bad_request)
+    else
+      @purchase.receive
+      render json: @purchase, status: :ok
     end
   end
 

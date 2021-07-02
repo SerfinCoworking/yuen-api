@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   resources :companies
   resources :account_types
   resources :accounts
-  resources :purchases
+  resources :purchases do
+    member do
+      get :receive 
+    end
+  end
   resources :purchase_products
   resources :stocks, only: %i[index show]
   resources :lots, only: %i[index show]
