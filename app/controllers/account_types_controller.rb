@@ -3,7 +3,7 @@ class AccountTypesController < ApplicationController
 
   # GET /account_types
   def index
-    @account_types = AccountType.by_company(current_user.company)
+    @account_types = AccountType.by_company(current_user.current_company)
 
     json_response(@account_types)
   end
