@@ -60,6 +60,6 @@ class PurchasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def purchase_params
-    params.require(:purchase).permit(:reference_number, :date, :provider_id, :total_price)
+    params.require(:purchase).permit(:reference_number, :request_date, :provider_id, :total_price)
   end
 end
