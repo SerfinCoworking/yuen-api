@@ -16,6 +16,7 @@ class AccountTypesController < ApplicationController
   # POST /account_types
   def create
     @account_type = AccountType.new(account_type_params)
+    @account_type.company = current_user.current_company
 
     if @account_type.save
       render json: @account_type, status: :created
