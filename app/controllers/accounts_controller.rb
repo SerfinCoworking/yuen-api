@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
     @account.company = current_user.current_company
 
     if @account.save
-      render json: @account, status: :created
+      render_success_response(@account, 'Creado correctamente')
     else
       render_json_validation_error @account
     end

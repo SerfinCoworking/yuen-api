@@ -21,7 +21,18 @@ class ApplicationController < ActionController::API
     render json: { errors: [error] }, status: status
   end
 
-  def render_json_validation_error(resource)
-    render json: resource, status: 422, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
+  def render_json_validation_error(resource = nil, serializer_options = {})
+    resp_data = { status: 'danger' }
+    resp_data[:errors] = resource.errors if resource.errors.any?
+    resp_data[:data] = ActiveModelSerializers::SerializableResource.new(resource, serializer_options) if resource
+    render json: resp_data, status: 422
+  end
+
+  def render_success_response(data = nil, message = nil, serializer_options = {})
+    resp_data = { status: 'success' }
+    resp_data[:message] = message if message
+    # Serialize the resource
+    resp_data[:data] = ActiveModelSerializers::SerializableResource.new(data, serializer_options) if data
+    render json: resp_data, status: 200
   end
 end

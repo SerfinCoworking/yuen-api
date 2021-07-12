@@ -17,11 +17,10 @@ class AccountTypesController < ApplicationController
   def create
     @account_type = AccountType.new(account_type_params)
     @account_type.company = current_user.current_company
-
     if @account_type.save
-      render json: @account_type, status: :created
+      render_success_response(@account_type, "Tipo de cuenta #{@account_type.name} creado correctamente.")
     else
-      render_json_validation_error @account_type
+      render_json_validation_error(@account_type)
     end
   end
 
