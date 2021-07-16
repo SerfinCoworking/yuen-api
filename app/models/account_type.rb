@@ -1,4 +1,5 @@
 class AccountType < ApplicationRecord
+  include CompanyScope
 
   # Relationships
   has_many :accounts
@@ -6,8 +7,4 @@ class AccountType < ApplicationRecord
 
   # Validations
   validates_presence_of :name, :company
-
-  scope :by_company, lambda { |a_company|
-    where(company_id: nil).or(AccountType.where(company_id: a_company))
-  }
 end
