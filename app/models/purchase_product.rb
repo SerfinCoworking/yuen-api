@@ -10,6 +10,7 @@ class PurchaseProduct < ApplicationRecord
   validates :cost_price, numericality: { greater_than_or_equal_to: 0 }
 
   delegate :provider_id, :company_id, to: :purchase, prefix: false
+  delegate :name, to: :product, prefix: true, allow_nil: true
 
   before_save :calc_total_line
 
