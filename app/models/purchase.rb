@@ -20,8 +20,4 @@ class Purchase < ApplicationRecord
     end
     received!
   end
-
-  def product_names
-    purchase_products.map(&:product_name)
-  end
 end
