@@ -3,6 +3,6 @@ class PurchaseSerializer < ActiveModel::Serializer
              :price_list_updated_date, :purchase_products
 
   def purchase_products
-    ActiveModel::SerializableResource.new(object.purchase_products, each_serializer: PurchaseProductSerializer)
+    ActiveModelSerializers::SerializableResource.new(object.purchase_products, each_serializer: PurchaseProductSerializer)
   end
 end

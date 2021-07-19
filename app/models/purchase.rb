@@ -20,4 +20,8 @@ class Purchase < ApplicationRecord
     end
     received!
   end
+
+  scope :since_request_date, ->(a_date) { where('purchases.request_date >= ?', a_date) }
+
+  scope :to_request_date, ->(a_date) { where('purchases.request_date <= ?', a_date) }
 end

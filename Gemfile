@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+# Use scopes in controllers
+gem 'has_scope'
+# To serialize as api_json models
 gem 'active_model_serializers', '~> 0.10.0'
 # To make advanced scopes
 gem 'pg_search'

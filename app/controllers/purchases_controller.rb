@@ -1,10 +1,12 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: %i[show update destroy receive]
 
+  has_scope :since_request_date, only: :index
+  has_scope :to_request_date, only: :index
 
   # GET /purchases
   def index
-    @purchases = Purchase.by_company(current_user.current_company)
+    @purchases = apply_scopes(Purchase).all.by_company(current_user.current_company)
 
     json_response(@purchases)
   end
