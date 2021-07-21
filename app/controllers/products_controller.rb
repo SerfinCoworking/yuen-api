@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show update destroy]
 
+  has_scope :search_name, only: :index
+
   # GET /products
   def index
-    @products = Product.by_company(current_user.current_company)
+    @products = apply_scopes(Product).all.by_company(current_user.current_company)
 
     json_response(@products)
   end
