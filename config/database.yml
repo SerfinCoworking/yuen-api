@@ -5,18 +5,18 @@ default: &default
 
 development:
   <<: *default
-  database: self_administer_api_development
-  username: self_administer_api
+  database: yuen_api_development
+  username: yuen_api
   password: '12345678'
 
 test:
   <<: *default
-  database: self_administer_api_test
-  username: self_administer_api
+  database: yuen_api_test
+  username: yuen_api
   password: '12345678'
 
 production:
   <<: *default
-  database: self_administer_api_production
-  username: self_administer_api
-  password: <%= ENV['SELF_ADMINISTER_API_DATABASE_PASSWORD'] %>
+  database: yuen_api_production
+  username: yuen_api
+  password: <%= ENV['YUEN_API_DATABASE_PASSWORD'] %>
